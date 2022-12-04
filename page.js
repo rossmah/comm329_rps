@@ -1,4 +1,3 @@
-// called by body onload, sets initial image for opponent
 function initPick() {
   var init = "img/mystery.svg";
   document.getElementById('oppResult').src = init;
@@ -9,9 +8,7 @@ function initPick() {
   localStorage.ties = 0;
 }
 
-// called by onclick when rock button is clicked
 function rockPick() {
-  // generates a random pick for opponent
   function genPick() {
     var pick = "img/mystery.svg";
     if (Math.floor(Math.random() * 3) == 2) {
@@ -21,9 +18,7 @@ function rockPick() {
     } else {
       var pick = "img/scissors.svg";
     }
-    // sets the opponent's image for the generated pick
     document.getElementById('oppResult').src = pick;
-    // comparison logic
     if (pick == "img/rock.svg") {
       document.getElementById('result').innerHTML = "Your skills are evenly matched - no hits have been made.";
       localStorage.ties++;
@@ -41,11 +36,9 @@ function rockPick() {
     }
     displayHearts();
   }
-  // runs the function
   genPick();
 }
 
-// called by onclick when paper button is clicked
 function paperPick() {
   function genPick() {
     var pick = "img/mystery.svg";
@@ -77,10 +70,7 @@ function paperPick() {
   genPick();
 }
 
-
-// called by onclick when scissors button is clicked
 function scissorsPick() {
-  // generates a random pick for opponent
   function genPick() {
     var pick = "img/mystery.svg";
     if (Math.floor(Math.random() * 3) == 2) {
@@ -90,9 +80,7 @@ function scissorsPick() {
     } else {
       var pick = "img/scissors.svg";
     }
-    // sets the opponent's image for the generated pick
     document.getElementById('oppResult').src = pick;
-    // comparison logic
     if (pick == "img/scissors.svg") {
       document.getElementById('result').innerHTML = "Your skills are evenly matched - no hits have been made.";
       localStorage.ties++;
@@ -108,7 +96,6 @@ function scissorsPick() {
     }
     displayHearts();
   }
-  // runs the function
   genPick();
 }
 
@@ -139,40 +126,4 @@ function displayHearts() {
   if(localStorage.playerLosses >= 3 || localStorage.oppLosses >= 3){
     document.getElementById('result').innerHTML = "<p class='gameOver'>GAME OVER</p><button class='playAgain' onClick='window.location.reload();'>Play Again?</button>";
   }
-}
-
-
-//Sets the score
-function memory() {
-  //Sets the number of wins to 0 if this is your first time playing
-  if (localStorage.wins == undefined) {
-    localStorage.wins = 0;
-  }
-  //Sets the number of wins displayed equal to the number stored in the browser
-  document.getElementById("winNumber").innerHTML = localStorage.wins;
-  //Sets the number of losses to 0 if this is your first time playing
-  if (localStorage.losses == undefined) {
-    localStorage.losses = 0;
-  }
-  //Sets the number of losses displayed equal to the number stored in the browser
-  document.getElementById("loseNumber").innerHTML = localStorage.losses;
-  //Sets the number of ties to 0 if this is your first time playing
-  if (localStorage.ties == undefined) {
-    localStorage.ties = 0;
-  }
-  //Sets the number of ties displayed equal to the number stored in the browser
-  document.getElementById("tieNumber").innerHTML = localStorage.ties;
-}
-
-//Resets the score to 0
-function reset() {
-  //Changes the opponent's choice image to a question mark
-  document.getElementById("opponentChoice").src = "img/questionMark.svg";
-  //Sets the wins, losses, and ties in the browser to 0 and changes the numbers displayed to match them
-  localStorage.wins = 0;
-  document.getElementById("winNumber").innerHTML = localStorage.wins;
-  localStorage.losses = 0;
-  document.getElementById("loseNumber").innerHTML = localStorage.losses;
-  localStorage.ties = 0;
-  document.getElementById("tieNumber").innerHTML = localStorage.ties;
 }
